@@ -1,213 +1,223 @@
+```css
 /*
- * style.css - Estilos para o Ranking de Filmes (Tema Preto e Vermelho)
+ * style.css - Estilos responsivos para o Ranking de Filmes
+ * Tema preto e vermelho
  */
 
-/* ================================================= */
-/* ESTILOS GERAIS E RESET */
-/* ================================================= */
-
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Garante que padding e borda não aumentem o tamanho total do elemento */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #111; /* Fundo preto escuro */
-    color: #ccc; /* Cor de texto padrão clara */
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #ccc;
+  line-height: 1.6;
 }
 
+/* Links */
 a {
-    color: #e50914; /* Vermelho vibrante para links */
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #e50914;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 a:hover {
-    color: #ff4d4f; /* Vermelho mais claro no hover */
+  color: #ff4d4f;
 }
 
-/* Esconde a numeração padrão das listas (usaremos CSS para criar a nossa numeração) */
-ol {
-    list-style: none;
-}
-
-/* ================================================= */
-/* 1. CABEÇALHO FIXO (#header) */
-/* ================================================= */
-
+/* Cabeçalho */
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px; /* Altura do cabeçalho */
-    z-index: 1000; /* Garante que fique acima de tudo */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    /* Fundo preto com gradiente sutil */
-    background: linear-gradient(to right, #000000, #1a0000); 
-    border-bottom: 2px solid #e50914; /* Linha vermelha destacando */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
+  background: linear-gradient(to right, #000, #1a0000);
+  border-bottom: 2px solid #e50914;
 }
 
 .logo h1 {
-    color: #fff;
-    font-size: 1.8em;
-    letter-spacing: 2px;
+  font-size: 1.6rem;
+  color: #fff;
+  letter-spacing: 2px;
 }
 
 .main-nav ul {
-    display: flex;
-}
-
-.main-nav ul li {
-    margin-left: 20px;
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
 .main-nav a {
-    color: #ccc;
-    font-weight: bold;
-    padding: 10px 0;
-    position: relative;
+  font-weight: bold;
+  color: #ccc;
 }
 
 .main-nav a:hover {
-    color: #e50914;
+  color: #e50914;
 }
 
-/* ================================================= */
-/* LAYOUT PRINCIPAL (para fixar o menu e o conteúdo) */
-/* ================================================= */
-
+/* Layout principal */
 #main-container {
-    display: flex;
-    /* Adiciona padding no topo para o conteúdo não ficar por baixo do header */
-    padding-top: 70px; 
+  display: flex;
+  padding-top: 70px; /* espaço pro header */
 }
 
-/* ================================================= */
-/* 2. MENU LATERAL FIXO (#sidebar) */
-/* ================================================= */
-
+/* Sidebar */
 #sidebar {
-    position: fixed;
-    top: 70px; /* Começa abaixo do header fixo */
-    left: 0;
-    width: 250px; /* Largura do menu */
-    height: calc(100vh - 70px); /* Ocupa o restante da altura da tela */
-    z-index: 900;
-    background: #0d0d0d;
-    padding: 20px 15px;
-    overflow-y: auto; /* Permite scroll se a lista de filmes for muito longa */
-    border-right: 1px solid #330000;
+  width: 250px;
+  min-width: 200px;
+  background: #0d0d0d;
+  padding: 20px 15px;
+  border-right: 1px solid #330000;
 }
 
 #sidebar h2 {
-    color: #e50914;
-    margin-bottom: 15px;
-    font-size: 1.4em;
-    text-transform: uppercase;
-    border-bottom: 1px dashed #333;
-    padding-bottom: 5px;
+  color: #e50914;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #333;
+  padding-bottom: 5px;
 }
 
-.movie-list-nav ol li {
-    margin-bottom: 8px;
+#sidebar ol {
+  list-style: none;
 }
 
-.movie-list-nav a {
-    display: block;
-    color: #ccc;
-    padding: 5px;
-    border-radius: 3px;
-    /* Efeito de destaque no hover */
-    background-color: transparent; 
+#sidebar a {
+  display: block;
+  color: #ccc;
+  padding: 5px;
+  border-radius: 3px;
 }
 
-.movie-list-nav a:hover {
-    color: #fff;
-    background-color: #330000; /* Fundo vermelho escuro no hover */
+#sidebar a:hover {
+  background: #330000;
+  color: #fff;
 }
 
-/* ================================================= */
-/* 3. CONTEÚDO PRINCIPAL COM SCROLL (#main-content) */
-/* ================================================= */
-
+/* Conteúdo */
 #main-content {
-    /* Desloca o conteúdo para a direita, dando espaço para o sidebar fixo */
-    margin-left: 250px; 
-    flex-grow: 1; /* Ocupa todo o espaço restante */
-    padding: 30px;
-    max-width: 900px; /* Limita a largura para melhor leitura */
-    background-color: #111;
+  flex: 1;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 #main-content h2 {
-    color: #e50914;
-    margin-bottom: 20px;
-    text-align: center;
+  color: #e50914;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* ================================================= */
-/* ESTILOS DA SEÇÃO DE RANKING (movie-ranking) */
-/* ================================================= */
-
+/* Ranking */
 .movie-ranking {
-    background: #1a1a1a; /* Fundo ligeiramente mais claro para a seção */
-    border: 1px solid #330000;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    /* Pequeno gradiente nas seções para profundidade */
-    background: linear-gradient(to bottom, #1a1a1a, #141414);
+  background: linear-gradient(to bottom, #1a1a1a, #141414);
+  border: 1px solid #330000;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .ranking-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #333;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #333;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .ranking-header h3 {
-    color: #fff;
-    font-size: 1.6em;
+  font-size: 1.4rem;
+  color: #fff;
 }
 
 .rank-number {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #e50914;
-    padding: 5px 10px;
-    background-color: #330000;
-    border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e50914;
+  background: #330000;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .movie-poster {
-    width: 100%;
-    max-width: 300px; /* Limita o tamanho do poster */
-    height: auto;
-    margin-top: 15px;
-    border: 2px solid #e50914;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5); /* Sombra vermelha de destaque */
+  width: 100%;
+  max-width: 320px;
+  margin: 15px 0;
+  border: 2px solid #e50914;
+  box-shadow: 0 0 10px rgba(229,9,20,0.5);
+  border-radius: 6px;
 }
 
-/* ================================================= */
-/* RODAPÉ */
-/* ================================================= */
-
+/* Rodapé */
 .site-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 1px solid #330000;
-    color: #666;
-    font-size: 0.9em;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #330000;
 }
+
+/* --- Responsividade --- */
+@media (max-width: 1024px) {
+  #main-container {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #330000;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .ranking-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .movie-poster {
+    max-width: 100%;
+  }
+
+  .rank-number {
+    font-size: 1rem;
+    padding: 4px 8px;
+  }
+}
+```

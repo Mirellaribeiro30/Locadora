@@ -1,10 +1,9 @@
-```css
 /*
  * style.css - Ranking de Filmes (Tema Preto e Vermelho)
- * Ajustado para responsividade
+ * Responsivo e com sidebar colapsável no mobile
  */
 
-/* Reset */
+/* --- Reset --- */
 * {
   margin: 0;
   padding: 0;
@@ -18,22 +17,26 @@ body {
   line-height: 1.6;
 }
 
+/* --- Links --- */
 a {
   color: #e50914;
   text-decoration: none;
   transition: 0.3s;
 }
-a:hover { color: #ff4d4f; }
+a:hover {
+  color: #ff4d4f;
+}
 
-/* Cabeçalho menor */
+/* --- Header --- */
 #header {
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 50px; /* reduzido */
+  width: 100%;
+  height: auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 15px;
   background: linear-gradient(to right, #000, #1a0000);
   border-bottom: 2px solid #e50914;
   z-index: 1000;
@@ -42,27 +45,43 @@ a:hover { color: #ff4d4f; }
 .logo h1 {
   font-size: 1.2rem;
   color: #fff;
+  margin-bottom: 5px;
 }
 
+/* Menu principal */
 .main-nav ul {
   display: flex;
-  list-style: none;
-  gap: 15px;
+  flex-wrap: wrap; /* permite quebrar linha se necessário */
+  gap: 10px;
 }
-.main-nav a { font-size: 0.9rem; }
+.main-nav li {
+  list-style: none;
+}
+.main-nav a {
+  display: block;
+  padding: 5px 10px;
+  color: #ccc;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.main-nav a:hover {
+  color: #e50914;
+}
 
-/* Ajuste do container para compensar o cabeçalho */
+/* --- Container principal --- */
 #main-container {
   display: flex;
-  padding-top: 50px; /* mesmo valor do header */
+  flex-direction: row;
+  padding-top: 80px; /* espaço suficiente para header fixo */
 }
 
-/* Sidebar */
+/* --- Sidebar --- */
 #sidebar {
   width: 250px;
   background: #0d0d0d;
   padding: 20px 15px;
   border-right: 1px solid #330000;
+  transition: all 0.3s ease;
 }
 
 #sidebar h2 {
@@ -73,32 +92,37 @@ a:hover { color: #ff4d4f; }
   padding-bottom: 5px;
 }
 
-#sidebar ol { list-style: none; }
+#sidebar ol {
+  list-style: none;
+}
+
 #sidebar a {
   display: block;
   color: #ccc;
   padding: 5px;
   border-radius: 3px;
 }
+
 #sidebar a:hover {
   background: #330000;
   color: #fff;
 }
 
-/* Conteúdo */
+/* --- Conteúdo principal --- */
 #main-content {
   flex: 1;
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
 }
+
 #main-content h2 {
   color: #e50914;
   margin-bottom: 20px;
   text-align: center;
 }
 
-/* Ranking */
+/* --- Ranking --- */
 .movie-ranking {
   background: linear-gradient(to bottom, #1a1a1a, #141414);
   border: 1px solid #330000;
@@ -116,7 +140,11 @@ a:hover { color: #ff4d4f; }
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
-.ranking-header h3 { color: #fff; font-size: 1.4rem; }
+
+.ranking-header h3 {
+  color: #fff;
+  font-size: 1.4rem;
+}
 
 .rank-number {
   font-weight: bold;
@@ -135,7 +163,7 @@ a:hover { color: #ff4d4f; }
   border-radius: 6px;
 }
 
-/* Rodapé */
+/* --- Rodapé --- */
 .site-footer {
   text-align: center;
   font-size: 0.85rem;
@@ -146,6 +174,8 @@ a:hover { color: #ff4d4f; }
 }
 
 /* --- Responsividade --- */
+
+/* Tablets e telas médias */
 @media (max-width: 900px) {
   #main-container {
     flex-direction: column;
@@ -158,18 +188,15 @@ a:hover { color: #ff4d4f; }
   }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
   #header {
     flex-direction: column;
     align-items: flex-start;
-    height: auto;
-    padding: 10px;
+    padding: 10px 15px;
   }
-
-  /* Correção do menu no mobile */
   .main-nav ul {
-    display: flex;
-    flex-direction: column;   /* força coluna */
+    flex-direction: column;
     width: 100%;
     align-items: flex-start;
     gap: 6px;
@@ -179,10 +206,31 @@ a:hover { color: #ff4d4f; }
     width: 100%;
   }
   .main-nav a {
-    display: block;
     width: 100%;
-    padding: 8px 10px;
+    padding: 8px 0;
     font-size: 1rem;
+  }
+
+  /* Sidebar colapsável */
+  #sidebar {
+    position: relative;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  #sidebar.active {
+    max-height: 1000px; /* espaço suficiente para exibir toda a lista */
+  }
+
+  /* Botão de abrir/fechar sidebar */
+  #sidebar-toggle {
+    display: block;
+    cursor: pointer;
+    color: #e50914;
+    margin-bottom: 10px;
+    font-weight: bold;
   }
 
   .ranking-header {
@@ -194,4 +242,3 @@ a:hover { color: #ff4d4f; }
     max-width: 100%;
   }
 }
-```

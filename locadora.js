@@ -45,4 +45,12 @@ function simularLocacao(tituloFilme, tipoAcao) {
 
     // Opcional: Adiciona um alerta para feedback imediato
     alert(mensagem);
+
 }
+
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+});

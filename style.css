@@ -1,19 +1,15 @@
-/* style.css — Limpo, responsivo e com header seguro (tema preto/vermelho) */
+```css
+/*
+ * style.css - Ranking de Filmes (Tema Preto e Vermelho)
+ * Ajustado para responsividade
+ */
 
-:root{
-  --header-height: 56px;    /* ajuste se quiser mais/menos */
-  --sidebar-width: 250px;
-  --accent: #e50914;
-  --accent-dark: #330000;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-/* Faz o navegador respeitar o header ao rolar para âncoras */
-html {
-  scroll-padding-top: var(--header-height);
-}
-
-/* Reset básico */
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: Arial, sans-serif;
@@ -22,204 +18,180 @@ body {
   line-height: 1.6;
 }
 
-/* Links */
-a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a {
+  color: #e50914;
+  text-decoration: none;
+  transition: 0.3s;
+}
 a:hover { color: #ff4d4f; }
 
-/* ========== HEADER (fixo) ========== */
-#header{
+/* Cabeçalho menor */
+#header {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--header-height);
+  top: 0; left: 0;
+  width: 100%; height: 50px; /* reduzido */
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
+  align-items: center;
+  padding: 0 15px;
   background: linear-gradient(to right, #000, #1a0000);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid #e50914;
   z-index: 1000;
 }
 
-.logo h1{
-  font-size: 1.05rem;
+.logo h1 {
+  font-size: 1.2rem;
   color: #fff;
-  line-height: 1;
-  margin: 0;
 }
 
-/* menu dentro do header */
-.main-nav ul{
+.main-nav ul {
   display: flex;
   list-style: none;
-  gap: 12px;
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  gap: 15px;
 }
-.main-nav a{
-  color: #ccc;
-  font-weight: 600;
-  font-size: .95rem;
-  padding: 6px 8px;
-  border-radius: 4px;
-}
-.main-nav a:hover{ color: var(--accent); }
+.main-nav a { font-size: 0.9rem; }
 
-/* ========== CONTAINER PRINCIPAL ========== */
-/* o padding-top garante que o conteúdo fique abaixo do header */
-#main-container{
+/* Ajuste do container para compensar o cabeçalho */
+#main-container {
   display: flex;
-  padding-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height));
+  padding-top: 50px; /* mesmo valor do header */
 }
 
-/* ========== SIDEBAR (fixa no desktop) ========== */
-#sidebar{
-  position: fixed;
-  top: var(--header-height);
-  left: 0;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--header-height));
-  overflow-y: auto;
+/* Sidebar */
+#sidebar {
+  width: 250px;
   background: #0d0d0d;
-  padding: 14px;
-  border-right: 1px solid var(--accent-dark);
-  z-index: 900;
+  padding: 20px 15px;
+  border-right: 1px solid #330000;
 }
 
-#sidebar h2{
-  color: var(--accent);
-  font-size: 1.2rem;
+#sidebar h2 {
+  color: #e50914;
   margin-bottom: 10px;
+  font-size: 1.3rem;
   border-bottom: 1px dashed #333;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
 }
 
-#sidebar ol{ list-style: none; padding-left: 0; }
-#sidebar a{
+#sidebar ol { list-style: none; }
+#sidebar a {
   display: block;
   color: #ccc;
-  padding: 6px 8px;
-  border-radius: 4px;
-  margin-bottom: 6px;
+  padding: 5px;
+  border-radius: 3px;
 }
-#sidebar a:hover{ background: var(--accent-dark); color: #fff; }
-
-/* ========== CONTEÚDO PRINCIPAL ========== */
-#main-content{
-  margin-left: var(--sidebar-width); /* desloca para direita quando sidebar fixa */
-  padding: 18px;
-  width: 100%;
-  max-width: 1100px; /* limitar leitura */
-  box-sizing: border-box;
-  margin-right: auto;
+#sidebar a:hover {
+  background: #330000;
+  color: #fff;
 }
 
-#main-content h2{
-  color: var(--accent);
+/* Conteúdo */
+#main-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+#main-content h2 {
+  color: #e50914;
+  margin-bottom: 20px;
   text-align: center;
-  margin-bottom: 18px;
 }
 
-/* Seção de filmes */
-.movie-ranking{
+/* Ranking */
+.movie-ranking {
   background: linear-gradient(to bottom, #1a1a1a, #141414);
-  border: 1px solid var(--accent-dark);
+  border: 1px solid #330000;
   border-radius: 8px;
-  padding: 18px;
-  margin-bottom: 26px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.45);
-  /* evita que âncoras fiquem escondidas atrás do header */
-  scroll-margin-top: calc(var(--header-height) + 12px);
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-.ranking-header{
+.ranking-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
   border-bottom: 1px dashed #333;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  flex-wrap: wrap;
+}
+.ranking-header h3 { color: #fff; font-size: 1.4rem; }
+
+.rank-number {
+  font-weight: bold;
+  color: #e50914;
+  background: #330000;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
-.ranking-header h3{ color: #fff; font-size: 1.25rem; }
-.rank-number{
-  color: var(--accent);
-  background: var(--accent-dark);
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-weight: 700;
-}
-
-/* poster */
-.movie-poster{
-  display: block;
+.movie-poster {
   width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 14px 0;
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 10px rgba(229,9,20,0.45);
+  max-width: 300px;
+  margin-top: 15px;
+  border: 2px solid #e50914;
+  box-shadow: 0 0 10px rgba(229,9,20,0.5);
   border-radius: 6px;
 }
 
-/* rodapé */
-.site-footer{
+/* Rodapé */
+.site-footer {
   text-align: center;
-  color: #888;
-  padding: 18px 12px;
-  margin-top: 30px;
-  border-top: 1px solid var(--accent-dark);
-  font-size: .9rem;
+  font-size: 0.85rem;
+  color: #666;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #330000;
 }
 
-/* ========== RESPONSIVIDADE ========== */
-/* Tablet / small desktop: empilha sidebar e conteúdo */
-@media (max-width: 900px){
-  /* sidebar deixa de ser fixa e vira bloco acima do conteúdo */
-  #sidebar{
-    position: static;
+/* --- Responsividade --- */
+@media (max-width: 900px) {
+  #main-container {
+    flex-direction: column;
+  }
+  #sidebar {
     width: 100%;
-    height: auto;
     border-right: none;
-    border-bottom: 1px solid var(--accent-dark);
-    margin-bottom: 18px;
-  }
-
-  /* main-content volta para 100% (sem deslocamento) */
-  #main-content{
-    margin-left: 0;
-    padding: 16px;
+    border-bottom: 1px solid #330000;
+    margin-bottom: 20px;
   }
 }
 
-/* Mobile: header pode ocupar duas linhas, menu vertical */
-@media (max-width: 600px){
-  :root { --header-height: 64px; } /* recalcula o espaçamento do scroll */
-  html { scroll-padding-top: var(--header-height); }
+@media (max-width: 600px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
+  }
 
-  #header{
-    height: var(--header-height);
-    padding: 8px 12px;
+  /* Correção do menu no mobile */
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;   /* força coluna */
+    width: 100%;
     align-items: flex-start;
     gap: 6px;
+    margin-top: 8px;
   }
-
-  .logo h1{ font-size: 1rem; }
-
-  .main-nav ul{
-    flex-direction: column;
-    gap: 8px;
+  .main-nav li {
     width: 100%;
   }
+  .main-nav a {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
 
-  #main-content{ padding: 12px; }
-  .movie-poster{ max-width: 100%; }
+  .ranking-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .movie-poster {
+    max-width: 100%;
+  }
 }
-
-/* Pequenos ajustes visuais */
-@media (prefers-reduced-motion: reduce){
-  * { transition: none !important; }
-}
+```
